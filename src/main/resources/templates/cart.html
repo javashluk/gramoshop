@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Korpa</title>
+</head>
+<body>
+	<div th:include="userMaster"></div>
+	<h1 class="text-center">Ploče u korpi</h1>
+	<div class="col-md-6 col-md-offset-2">
+		<table class="table table-hover">
+			<tr>
+				<th>Izvođač</th>
+				<th>Naslov</th>
+				<th>Opis</th>
+				<th>Količina</th>
+				<th>Cena(1kom)</th>
+				<th>Obriši</th>
+			</tr>
+			<tbody>
+				<tr th:each="cart : ${carts}">
+					<td th:text="${cart.product.artist}"></td>
+					<td th:text="${cart.product.name}"></td>
+					<td th:text="${cart.product.description}"></td>
+					<td th:text="${cart.quantity}"></td>
+					<td th:text="${cart.product.price}"></td>
+					<td>
+						<form th:action="@{'/public/shoppingcarts/delete/'+${cart.id}}"
+							th:method="get">
+							<input type="submit" value="Obriši" class="btn btn-danger" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<form th:action="@{'/public/shoppingcarts/deleteall/' + ${user.id}}"
+			th:method="get" class="text-right">
+			<input type="submit" value="Obriši sve"
+				class="btn btn-danger text-right" />
+		</form>
+		<form th:action="@{/public/orders/buy}"
+			th:method="get" class="text-left">
+			<input type="submit" value="Kupi albume"
+				class="btn btn-success text-right" />
+		</form>
+	</div>
+</body>
+</html>

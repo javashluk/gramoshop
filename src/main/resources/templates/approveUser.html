@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Odobri korisnike</title>
+</head>
+<body>
+	<div th:include="adminMaster"></div>
+
+	<h1 class="text-center">Korisnici koji nisu još odobreni</h1>
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table table-hover">
+			<tr>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Adresa</th>
+				<th>Korisničko ime</th>
+				<th>Odobri</th>
+				<th>Odbaci</th>
+			</tr>
+			<tbody>
+				<tr th:each="unnaproved : ${unapprovedUsers}">
+					<td th:id="firstName" th:name="lastName" th:text="${unnaproved.firstName}"></td>
+					<td th:id="lastName" th:name="lastName" th:text="${unnaproved.lastName}"/>
+					<td th:id="address" th:name="address" th:text="${unnaproved.address}"/>
+					<td th:id="username" th:name="username" th:text="${unnaproved.username}"/>
+					<td>
+						<form  method="post" th:object="${userToSave}" th:action="@{'/admin/user/save'}">
+							<input type="hidden" th:id="id" th:name="id" th:value="${unnaproved.id}"/>
+							<input type="hidden" th:id="username" th:name="username" th:value="${unnaproved.username}"/>
+							<input type="submit" value="Odobri korisnika" class="btn btn-success" />
+						</form>
+					</td>
+					<td>
+						<form  method="get" th:action="@{'/admin/user/delete/' + ${unnaproved.id}}">
+							<input type="submit" value="Odbaci korisnika" class="btn btn-danger" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+	</div>
+</body>
+</html>

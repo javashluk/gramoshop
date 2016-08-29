@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<link th:href="@{/css/login.css}" rel="stylesheet"></link>
+<title>Login stranica</title>
+
+</head>
+ 
+<body>
+
+	<div th:if="${param.error}" class="panel-body">
+		<div class="alert alert-danger" role="alert">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Greška:</span> Niste uneli ispravne podatke ili vam administrator još nije odobrio nalog!
+		</div>
+	</div>
+	<br />
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-lock"></span> Login
+					</div>
+					<br />
+					<form class="form-horizontal" method="post" action="#" role="login">
+						<div class="form-group">
+							<label for="username" class="col-sm-4 control-label">
+								Korisničko ime</label>
+							<div class="col-sm-6">
+								<input type="text" name="username" class="form-control"
+									id="username" placeholder="korisničko ime" required="true" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-4 control-label">
+								Šifra</label>
+							<div class="col-sm-6">
+								<input type="password" name="password" class="form-control"
+									id="pasword" placeholder="šifra" required="true" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<div class="checkbox">
+									<label> <input type="checkbox" /> Zapamti me
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group last">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="submit" class="btn btn-success btn-sm">
+									Uloguj se</button>
+								<button type="reset" class="btn btn-default btn-sm">
+									Resetuj polja</button>
+
+							</div>
+
+						</div>
+					</form>
+
+				</div>
+				<div class="panel-footer">
+					Ukoliko nemate nalog <a th:href="@{/registration}">Registrujte se ovde</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Žanrovi</title>
+</head>
+<body>
+	<div th:include="adminMaster"></div>
+	<h1 class="text-center">Žanrovi</h1>
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table table-hover">
+			<tr>
+				<th>Naziv žanra</th>
+				<th>Obriši</th>
+				<th>Izmeni</th>
+			</tr>
+			<tbody>
+				<tr th:each="genre : ${genres}">
+					<td th:id="name" th:name="name" th:text="${genre.name}"/>
+					<td>
+						<form  method="get" th:action="@{'/admin/genre/delete/' + ${genre.id}}">
+							<input type="submit" value="Obriši žanr" class="btn btn-danger" />
+						</form>
+					</td>
+					<td>
+						<form  method="get" th:action="@{'/admin/genre/edit/' + ${genre.id}}">
+							<input type="submit" value="Izmeni žanr" class="btn btn-info" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+				<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-10">
+					<a th:href="@{/admin/genre/add}"><input type="submit" class="btn btn-info"
+						value="Dodaj novi žanr" /></a>
+				</div>
+			</div>
+		<br />
+	</div>
+</body>
+</html>
